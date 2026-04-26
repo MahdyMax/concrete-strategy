@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+:root {
+  --black:        #000001;
+  --grey:         #6e7271;
+  --gold:         #ffdf64;
+  --white:        #ffffff;
+  --gold-dim:     #c9ad3e;
+  --gold-dark:    #8a7422;
+  --gold-faint:   rgba(255,223,100,0.08);
+  --gold-glow:    rgba(255,223,100,0.18);
+  --grey-light:   #a8abaa;
+  --grey-dark:    #3a3c3b;
+  --grey-darker:  #272928;
+  --black-soft:   #111312;
+  --black-mid:    #1c1e1d;
+  --black-card:   #232524;
+  --black-card2:  #2c2e2d;
+  --border:       #3a3c3b;
+  --border-light: #4a4c4b;
+  --font-space:   'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-space);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Range slider ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 10px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--black);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 6px var(--gold-glow);
+}
+input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.2); }
+input[type="range"]::-moz-range-thumb {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--black);
+  cursor: pointer;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--grey-dark); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--grey); }
+::selection { background: var(--gold-glow); color: var(--white); }
+
+/* ── Confetti keyframe ── */
+@keyframes confFall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ── Progress bar fill animation ── */
+@keyframes fillBar {
+  from { width: 0%; }
+}
+
+/* ── Pulse for live badge ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ── Shimmer / fade-in ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Bounce for mascot ── */
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ── Spin for loader ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+/* ── Vault Grid ── */
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .vault-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Result Card Stats Grid ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for Desktop */
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(1, 1fr) !important; /* 1 column for Mobile */
+  }
+}
+
+/* ── Networks Container ── */
+.networks-container {
+  display: flex;
+  flex-direction: row; /* Horizontal for Desktop */
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.networks-badges {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .networks-container {
+    flex-direction: column !important; /* Vertical for Mobile */
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+}
+
+/* ── Actions Grid ── */
+.actions-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 640px) {
+  .actions-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  
+  .actions-grid button,
+  .actions-grid > div {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* ── Result Card Actions ── */
+.result-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-top: 16px !important;
+  flex-wrap: wrap !important;
+}
+
+@media (max-width: 640px) {
+  .result-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+  
+  .result-actions button {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
