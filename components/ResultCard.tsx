@@ -47,8 +47,25 @@ export default function ResultCard({ result, sliders, onRegenerate, pinned, onPi
   const [showProjector, setShowProjector] = useState(false);
   const [showPie, setShowPie] = useState(false);
 
-  function handleShare() {
-    window.open(`https://twitter.com/intent/tweet?text=${buildTweetText(result)}`, "_blank");
+  async function handleShare() {
+    const encodedText = buildTweetText(result);
+    
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile && navigator.share) {
+      try {
+        await navigator.share({
+          title: "My Concrete Strategy",
+          text: decodeURIComponent(encodedText),
+        });
+        return;
+      } catch (err) {
+        if ((err as Error).name === "AbortError") return;
+      }
+    }
+
+    // Previous desktop settings
+    window.open(`https://twitter.com/intent/tweet?text=${encodedText}`, "_blank");
   }
 
   function handleSave() {
