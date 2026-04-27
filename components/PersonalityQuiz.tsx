@@ -84,62 +84,66 @@ export default function PersonalityQuiz({ onResult }: Props) {
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              style={{ position: "fixed", inset: 0, background: "rgba(0,0,1,0.8)", zIndex: 60 }}
+              style={{ position: "fixed", inset: 0, background: "rgba(0,0,1,0.8)", zIndex: 100, cursor: "pointer" }}
             />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 350, damping: 28 }}
-              style={{
-                position: "fixed", top: "50%", left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "min(480px, 92vw)",
-                background: "var(--black-card)", border: "1px solid var(--border)",
-                borderRadius: 16, padding: 24, zIndex: 61,
-              }}
-            >
-              {/* Progress */}
-              <div style={{ display: "flex", gap: 6, marginBottom: 20 }}>
-                {QUESTIONS.map((_, i) => (
-                  <div key={i} style={{ flex: 1, height: 4, borderRadius: 4, background: i <= step ? "var(--gold)" : "var(--border)", transition: "background 0.3s" }} />
-                ))}
-              </div>
-
-              <div style={{ fontSize: 11, color: "var(--grey)", marginBottom: 8 }}>
-                Question {step + 1} of {QUESTIONS.length}
-              </div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--white)", marginBottom: 18, lineHeight: 1.4 }}>
-                {QUESTIONS[step].q}
-              </h3>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                {QUESTIONS[step].opts.map((opt) => (
-                  <motion.button
-                    key={opt.label}
-                    whileHover={{ scale: 1.02, borderColor: "var(--gold)" }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => pick(opt)}
-                    style={{
-                      padding: "12px 16px", borderRadius: 10,
-                      border: "1px solid var(--border)", background: "var(--black-mid)",
-                      color: "var(--white)", fontSize: 14, fontWeight: 500,
-                      cursor: "pointer", fontFamily: "inherit", textAlign: "left",
-                      transition: "border-color 0.2s",
-                    }}
-                  >
-                    {opt.label}
-                  </motion.button>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setOpen(false)}
-                style={{ marginTop: 14, background: "none", border: "none", color: "var(--grey)", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}
+            <div style={{ position: "fixed", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", zIndex: 101, padding: 20 }}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                style={{
+                  pointerEvents: "auto",
+                  width: "min(480px, 100%)",
+                  maxHeight: "min(680px, 92vh)",
+                  overflowY: "auto",
+                  background: "var(--black-card)", border: "1px solid var(--border)",
+                  borderRadius: 16, padding: 24,
+                  boxShadow: "0 24px 48px rgba(0,0,0,0.5)",
+                }}
               >
-                Cancel
-              </button>
-            </motion.div>
+                {/* Progress */}
+                <div style={{ display: "flex", gap: 6, marginBottom: 20 }}>
+                  {QUESTIONS.map((_, i) => (
+                    <div key={i} style={{ flex: 1, height: 4, borderRadius: 4, background: i <= step ? "var(--gold)" : "var(--border)", transition: "background 0.3s" }} />
+                  ))}
+                </div>
+
+                <div style={{ fontSize: 11, color: "var(--grey)", marginBottom: 8 }}>
+                  Question {step + 1} of {QUESTIONS.length}
+                </div>
+                <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--white)", marginBottom: 18, lineHeight: 1.4 }}>
+                  {QUESTIONS[step].q}
+                </h3>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {QUESTIONS[step].opts.map((opt) => (
+                    <motion.button
+                      key={opt.label}
+                      whileHover={{ scale: 1.02, borderColor: "var(--gold)" }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => pick(opt)}
+                      style={{
+                        padding: "12px 16px", borderRadius: 10,
+                        border: "1px solid var(--border)", background: "var(--black-mid)",
+                        color: "var(--white)", fontSize: 14, fontWeight: 500,
+                        cursor: "pointer", fontFamily: "inherit", textAlign: "left",
+                        transition: "border-color 0.2s",
+                      }}
+                    >
+                      {opt.label}
+                    </motion.button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setOpen(false)}
+                  style={{ marginTop: 14, background: "none", border: "none", color: "var(--grey)", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}
+                >
+                  Cancel
+                </button>
+              </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>
