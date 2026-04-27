@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from "react";
 interface Props {
   history: StrategyResult[];
   onSelect: (r: StrategyResult) => void;
+  onClear: () => void;
 }
 
 const TIER_COLOR: Record<string, string> = {
@@ -14,7 +15,7 @@ const TIER_COLOR: Record<string, string> = {
   high: "var(--white)",
 };
 
-export default function StrategyHistory({ history, onSelect }: Props) {
+export default function StrategyHistory({ history, onSelect, onClear }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftShadow, setShowLeftShadow] = useState(false);
   const [showRightShadow, setShowRightShadow] = useState(false);
@@ -43,8 +44,32 @@ export default function StrategyHistory({ history, onSelect }: Props) {
 
   return (
     <div style={{ marginTop: 20, position: "relative" }}>
-      <div style={{ fontSize: 10, color: "var(--grey)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1.2px", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={{ fontSize: 12 }}>🕑</span> RECENT GENERATIONS
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+        <div style={{ fontSize: 10, color: "var(--grey)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1.2px", display: "flex", alignItems: "center", gap: 6 }}>
+          <span style={{ fontSize: 12 }}>🕑</span> RECENT GENERATIONS
+        </div>
+        {history.length > 2 && (
+          <motion.button
+            whileHover={{ color: "var(--white)" }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onClear}
+            style={{
+              background: "transparent",
+              border: "none",
+              color: "var(--grey)",
+              fontSize: 10,
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "1.2px",
+              cursor: "pointer",
+              padding: 0,
+              fontFamily: "inherit",
+              transition: "color 0.2s"
+            }}
+          >
+            Clear
+          </motion.button>
+        )}
       </div>
 
       <div style={{ position: "relative" }}>

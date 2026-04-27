@@ -120,6 +120,10 @@ export default function Home() {
     setResult(r);
   }, []);
 
+  const handleClearHistory = useCallback(() => {
+    setHistory([]);
+  }, []);
+
   const displayAlloc = result?.allocation ?? {
     usdt: 17, weeth: 17, wbtc: 16, thbill: 17, theousdc: 17, theousdc_arb: 16,
   };
@@ -171,7 +175,7 @@ export default function Home() {
           </div>
 
           {/* Feature #6: Strategy history strip */}
-          <StrategyHistory history={history} onSelect={handleSelectHistory} />
+          <StrategyHistory history={history} onSelect={handleSelectHistory} onClear={handleClearHistory} />
         </div>
 
         {/* ── Result card ── */}
