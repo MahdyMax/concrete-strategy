@@ -17,6 +17,7 @@ export interface Vault {
   vaultUrl: string;
   depositAsset: string;
   institutional?: boolean;
+  pointsEnabled?: boolean;
 }
 
 export interface Allocation {
