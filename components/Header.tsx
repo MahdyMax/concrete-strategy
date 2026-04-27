@@ -5,7 +5,19 @@ export default function Header({ aggression }: { aggression: number }) {
   return (
     <header style={{ textAlign: "center", padding: "32px 0 20px" }}>
       <Mascot aggression={aggression} />
-      <h1 style={{ fontSize: "clamp(22px, 5vw, 36px)", fontWeight: 700, color: "var(--gold)", lineHeight: 1.2, marginBottom: 8, letterSpacing: "-0.5px" }}>
+      <h1 style={{
+        fontSize: "clamp(22px, 5vw, 36px)",
+        fontWeight: 700,
+        color: "var(--gold)",
+        lineHeight: 1.2,
+        marginBottom: 8,
+        letterSpacing: "-0.5px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 12
+      }}>
+        <img src="/concrete-logo.png" alt="Concrete Logo" className="header-logo" />
         Concrete Strategy
       </h1>
       <p style={{ fontSize: 14, color: "var(--grey-light)", maxWidth: 500, margin: "0 auto", lineHeight: 1.6 }}>

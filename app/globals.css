@@ -208,3 +208,16 @@ input[type="range"]::-moz-range-thumb {
     justify-content: center !important;
   }
 }
+
+/* ── Header Logo ── */
+.header-logo {
+  height: 35px;
+  width: auto;
+}
+
+@media (max-width: 640px) {
+  .header-logo {
+    height: 25px;
+  }
+}
+

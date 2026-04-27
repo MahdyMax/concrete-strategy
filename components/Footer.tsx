@@ -55,6 +55,13 @@ export default function Footer() {
           Check real vaults → app.concrete.xyz/earn
         </a>
       </div>
+      <div style={{ marginTop: 28, opacity: 0.6 }}>
+        <img
+          src="/concrete-logotype.svg"
+          alt="Concrete Logotype"
+          style={{ height: 22, width: "auto", display: "block", margin: "0 auto" }}
+        />
+      </div>
     </footer>
   );
 }
