@@ -59,7 +59,7 @@ export default function VaultCards({ allocation }: { allocation: Allocation }) {
     <div>
       {!loading && <SourceBadge source={source} lastUpdated={lastUpdated} />}
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+      <div className="vault-grid">
         {loading
           ? Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
           : VAULTS.map((vault, i) => {
