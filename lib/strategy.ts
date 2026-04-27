@@ -187,11 +187,12 @@ export function computeStrategy(sliders: SliderValues): StrategyResult {
 
 export function buildTweetText(result: StrategyResult): string {
   return encodeURIComponent(
-    `I just built my Dream Concrete Strategy: ${result.name}\n` +
-      `Expected ${result.apyMin}–${result.apyMax}% APY | ${result.riskLabel}\n` +
-      `Diversification Score: ${result.diversificationScore}/10\n\n` +
-      `Build yours 👉 https://app.concrete.xyz/earn\n\n` +
-      `@ConcreteXYZ #DeFi #Concrete #YieldFarming #Restaking`
+    `I just built my Concrete Strategy: ${result.name}\n` +
+    `Expected ${result.apyMin}–${result.apyMax}% APY | ${result.riskLabel}\n` +
+    `Diversification Score: ${result.diversificationScore}/10\n\n` +
+    `app.concrete.xyz/earn\n\n` +
+    `Build yours 👉 https://concrete-strategy.vercel.app\n\n` +
+    `@ConcreteXYZ #DeFi #Concrete #YieldFarming #Restaking`
   );
 }
 
